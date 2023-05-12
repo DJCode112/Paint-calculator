@@ -1,0 +1,46 @@
+#Paint calculator
+Total_Area = 0
+
+#Prompts for dimensions of room
+WidthR = int(input("Enter the Width of the room"))
+HeightR = int(input("Enter the Height of the room"))
+LengthR = int(input("Enter the Length of the room"))
+
+#Choice for areas that are unpaintable
+Choice = input("Are there any areas where the room cannot be painted such as windows or doors? 'Yes' or 'No'")
+
+#Checks for unpaintable areas and if so then asks the user for how many and the area sizes
+if Choice == "Yes":
+    Num_Areas = int(input("How many areas are there to be painted"))
+    while Num_Areas > 0:
+        Width = int(input("Enter the Width of the Area"))
+        Height = int(input("Enter the Height of the Area"))
+        Area = (Width * Height)
+        Total_Area = Total_Area + Area
+        Num_Areas = Num_Areas - 1
+    #Gets the values of the room volume and the areas of the floor and the surfaces such as walls and ceilings
+    Room_Volume = (WidthR * HeightR * LengthR)
+    Room_Area = (WidthR * HeightR * 4) + (LengthR * WidthR * 2)
+    Floor_Area = (WidthR * LengthR)
+    Area_Of_Paintable_Surface = Room_Area - Floor_Area - Total_Area
+    #Ouputs all information the user will need
+    print("Your floor area is", Floor_Area)
+    print("Your volume of the room is", Room_Volume)
+    print("Your area of paintable surfaces is", Area_Of_Paintable_Surface,"m^2")
+
+    
+else:
+    #Gets the values of the room volume and the areas of the floor and the surfaces such as walls and ceilings
+    Room_Volume = (WidthR * HeightR * LengthR)
+    Room_Area = (WidthR * HeightR * 4) + (LengthR * WidthR * 2)
+    Floor_Area = (WidthR * LengthR)
+    Area_Of_Paintable_Surface = Room_Area - Floor_Area
+    #Ouputs all information the user will need
+    print("Your floor area is", Floor_Area)
+    print("Your volume of the room is", Room_Volume)
+    print("Your area of paintable surfaces is", Area_Of_Paintable_Surface,"m^2")
+
+#Gets the cost of the apint and works out the total cost of the room to paint
+Cost = int(input("Enter the price of paint per square meter"))
+Total_Cost = Cost * Area_Of_Paintable_Surface
+print("Your total cost is", Total_Cost)
